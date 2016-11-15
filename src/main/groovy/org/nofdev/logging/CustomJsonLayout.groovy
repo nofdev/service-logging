@@ -12,7 +12,7 @@ public class CustomJsonLayout extends JsonLayout {
 
     CustomJsonLayout() {
         super();
-        logPrefix = "~~~json~~~"
+        logPrefix = ""
         logPrefixSwitch = true
     }
 
@@ -21,7 +21,7 @@ public class CustomJsonLayout extends JsonLayout {
         if (event.getArgumentArray() && event.getArgumentArray()[0] instanceof Map) {
             map.putAll(event.getArgumentArray()[0])
         }
-        if (event.getArgumentArray() && event.getArgumentArray()[0] instanceof String) {
+        if (event.getArgumentArray() && (event.getArgumentArray()[0] instanceof String || event.getArgumentArray()[0] instanceof GString)) {
             map.put("message", event.getArgumentArray()[0])
         }
     }
