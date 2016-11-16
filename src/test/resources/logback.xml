@@ -11,6 +11,7 @@
                     <!--<prettyPrint>true</prettyPrint>-->
                 </jsonFormatter>
                 <logPrefix>~~~json~~~</logPrefix>
+                <!--<logPrefixSwitch>false</logPrefixSwitch>-->
             </layout>
         </encoder>
     </appender>

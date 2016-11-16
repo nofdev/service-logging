@@ -6,7 +6,7 @@ import ch.qos.logback.contrib.json.classic.JsonLayout
 /**
  * Created by Liutengfei on 2016/8/11 0011.
  */
-public class CustomJsonLayout extends JsonLayout{
+public class CustomJsonLayout extends JsonLayout {
     protected String logPrefix
     protected boolean logPrefixSwitch;
 
@@ -27,15 +27,12 @@ public class CustomJsonLayout extends JsonLayout{
         if (event.getArgumentArray() && event.getArgumentArray()[0] instanceof Map) {
             map.putAll(event.getArgumentArray()[0])
         }
-        if (event.getArgumentArray() && (event.getArgumentArray()[0] instanceof String || event.getArgumentArray()[0] instanceof GString)) {
-            map.put("message", event.getArgumentArray()[0].toString())
-        }
     }
 
     @Override
     String doLayout(ILoggingEvent event) {
         if (logPrefixSwitch) {
-            return logPrefix + super.doLayout(event)
+            return "${logPrefix}${super.doLayout(event)}"
         } else {
             return super.doLayout(event)
         }
