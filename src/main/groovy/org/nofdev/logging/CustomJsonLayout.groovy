@@ -12,17 +12,22 @@ public class CustomJsonLayout extends JsonLayout {
 
     CustomJsonLayout() {
         super();
-        logPrefix = "~~~json~~~"
+        logPrefix = ""
         logPrefixSwitch = true
     }
 
+    /**
+     * 利用占位符传递参数输出闭包的返回值, 所以原来支持的 message="xxx{}{}" 这种占位符写法就失效了
+     * @param map
+     * @param event
+     */
     @Override
     protected void addCustomDataToJsonMap(Map<String, Object> map, ILoggingEvent event) {
         if (event.getArgumentArray() && event.getArgumentArray()[0] instanceof Map) {
             map.putAll(event.getArgumentArray()[0])
         }
-        if (event.getArgumentArray() && event.getArgumentArray()[0] instanceof String) {
-            map.put("message", event.getArgumentArray()[0])
+        if (event.getArgumentArray() && (event.getArgumentArray()[0] instanceof String || event.getArgumentArray()[0] instanceof GString)) {
+            map.put("message", event.getArgumentArray()[0].toString())
         }
     }
 

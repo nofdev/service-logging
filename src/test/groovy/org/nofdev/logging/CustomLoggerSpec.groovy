@@ -29,9 +29,16 @@ public class CustomLoggerSpec extends Specification {
         log.debug() { "我是错误概述，但是如果不是debug级别我里面的函数是不会执行的" + debugStr() }
         log.debug("错误概述") { ["custDate": "自定义键值对", "func": debugStr()] }
         //下面这两个效果是一样的,闭包传入字符串默认覆盖掉message
-        log.debug("错误概述") { ["message": "我会覆盖前面的错误概述"] }
+        log.debug("错误概述") { [message: "我会覆盖前面的错误概述"] }
         log.debug("错误概述") { "我会覆盖前面的错误概述" }
-
+        log.debug("测试 map 的嵌套"){
+            def a = [bb:2,cc:3]
+            [aa:a]
+        }
+        log.debug("xxx"){
+            def a =1
+            [aa:"$a"]
+        }
     }
 
     public static String infoStr() {
