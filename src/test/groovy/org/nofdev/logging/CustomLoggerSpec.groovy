@@ -30,6 +30,7 @@ public class CustomLoggerSpec extends Specification {
         log.debug(e) { ["message": "错误概述", "func": debugStr()] }
 
 
+
         //下面这两个效果是一样的,闭包传入字符串默认覆盖掉message
         log.debug("错误概述") { [message: "我会覆盖前面的错误概述"] }
         log.debug("错误概述") { def a = "我会覆盖前面的错误概述"; ["message": "测试GString的序列化,${a}"] }
