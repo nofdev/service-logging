@@ -3,6 +3,7 @@ package org.nofdev.logging
 import groovy.transform.CompileStatic
 import org.nofdev.servicefacade.CallId
 import org.nofdev.servicefacade.ServiceContextHolder
+import spock.lang.Ignore
 import spock.lang.Specification
 
 /**
@@ -18,7 +19,7 @@ public class CustomLoggerSpec extends Specification {
 
     def cleanup() {}
 
-//    @Ignore
+    @Ignore
     def demo() {
         setup:
         ServiceContextHolder.serviceContext.setCallId(new CallId(id: "111", parent: "000", root: "000"))
@@ -28,8 +29,8 @@ public class CustomLoggerSpec extends Specification {
         log.debug("错误概述", e)
         log.debug("错误概述", e) { ["custDate": "自定义键值对", "func": debugStr()] }
         log.debug(e) { ["message": "错误概述", "func": debugStr()] }
-
-
+        log.debug(e) { ["message": "错误概述111111"] }
+        log.debug(e) { "错误概述222222" }
 
         //下面这两个效果是一样的,闭包传入字符串默认覆盖掉message
         log.debug("错误概述") { [message: "我会覆盖前面的错误概述"] }

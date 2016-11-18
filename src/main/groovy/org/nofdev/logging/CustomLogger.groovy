@@ -94,8 +94,12 @@ public final class CustomLogger {
             }
         }
     }
-
-    public void error(final Throwable throwable, final Supplier<Map> args) {
+    /**
+     * 当传入map的时候，map的key不要定义为 timestamp 、level 、thread 、logger 、context 因为这样会覆盖掉内置关键字。<br>
+     * 当传入String类型的时候，会覆盖messsage
+     * @param args 目前仅支持Map和String类型
+     */
+    public void error(final Throwable throwable, final Supplier args) {
         if (proxy.isErrorEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
                 proxyLog(throwable, args, LocationAwareLogger.ERROR_INT);
@@ -160,7 +164,7 @@ public final class CustomLogger {
         }
     }
 
-    public void warn(final Throwable throwable, final Supplier<Map> args) {
+    public void warn(final Throwable throwable, final Supplier args) {
         if (proxy.isWarnEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
                 proxyLog(throwable, args, LocationAwareLogger.WARN_INT);
@@ -224,7 +228,7 @@ public final class CustomLogger {
         }
     }
 
-    public void info(final Throwable throwable, final Supplier<Map> args) {
+    public void info(final Throwable throwable, final Supplier args) {
         if (proxy.isInfoEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
                 proxyLog(throwable, args, LocationAwareLogger.INFO_INT);
@@ -247,7 +251,7 @@ public final class CustomLogger {
     public void debug(final String message, final Throwable throwable) {
         if (proxy.isDebugEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
-                proxyLog(message,throwable, LocationAwareLogger.DEBUG_INT);
+                proxyLog(message, throwable, LocationAwareLogger.DEBUG_INT);
             } else {
                 proxy.debug(message, throwable);
             }
@@ -257,7 +261,7 @@ public final class CustomLogger {
     public void debug(final String message, final Supplier<Map> args) {
         if (proxy.isDebugEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
-                proxyLog(message,args, LocationAwareLogger.DEBUG_INT);
+                proxyLog(message, args, LocationAwareLogger.DEBUG_INT);
             } else {
                 proxy.debug(message);
             }
@@ -267,7 +271,7 @@ public final class CustomLogger {
     public void debug(final String message, final Throwable throwable, final Supplier<Map> args) {
         if (proxy.isDebugEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
-                proxyLog(message,throwable,args, LocationAwareLogger.DEBUG_INT);
+                proxyLog(message, throwable, args, LocationAwareLogger.DEBUG_INT);
             } else {
                 proxy.debug(message, throwable);
             }
@@ -288,10 +292,10 @@ public final class CustomLogger {
         }
     }
 
-    public void debug(final Throwable throwable, final Supplier<Map> args) {
+    public void debug(final Throwable throwable, final Supplier args) {
         if (proxy.isDebugEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
-                proxyLog(throwable,args, LocationAwareLogger.DEBUG_INT);
+                proxyLog(throwable, args, LocationAwareLogger.DEBUG_INT);
             } else {
                 proxy.debug(null, throwable);
             }
@@ -312,7 +316,7 @@ public final class CustomLogger {
     public void trace(final String message, final Throwable throwable) {
         if (proxy.isTraceEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
-                proxyLog(message,throwable, LocationAwareLogger.TRACE_INT);
+                proxyLog(message, throwable, LocationAwareLogger.TRACE_INT);
             } else {
                 proxy.trace(message, throwable);
             }
@@ -322,7 +326,7 @@ public final class CustomLogger {
     public void trace(final String message, final Supplier<Map> args) {
         if (proxy.isTraceEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
-                proxyLog(message,args, LocationAwareLogger.TRACE_INT);
+                proxyLog(message, args, LocationAwareLogger.TRACE_INT);
             } else {
                 proxy.trace(message);
             }
@@ -332,7 +336,7 @@ public final class CustomLogger {
     public void trace(final String message, final Throwable throwable, final Supplier<Map> args) {
         if (proxy.isTraceEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
-                proxyLog(message,throwable,args, LocationAwareLogger.TRACE_INT);
+                proxyLog(message, throwable, args, LocationAwareLogger.TRACE_INT);
             } else {
                 proxy.trace(message, throwable);
             }
@@ -353,16 +357,15 @@ public final class CustomLogger {
         }
     }
 
-    public void trace(final Throwable throwable, final Supplier<Map> args) {
+    public void trace(final Throwable throwable, final Supplier args) {
         if (proxy.isTraceEnabled()) {
             if (proxy instanceof LocationAwareLogger) {
-                proxyLog(throwable,args, LocationAwareLogger.TRACE_INT);
+                proxyLog(throwable, args, LocationAwareLogger.TRACE_INT);
             } else {
                 proxy.trace(null, throwable);
             }
         }
     }
-
 
 //========================================================================
     public boolean isErrorEnabled() {
@@ -428,7 +431,7 @@ public final class CustomLogger {
             map = new HashMap()
         }
         map.put(ServiceContextHolder.serviceContext.CALLID, ServiceContextHolder.serviceContext.getCallId())
-        Object[] objects=[map]
+        Object[] objects = [map]
         return objects
     }
 
@@ -448,8 +451,14 @@ public final class CustomLogger {
         ((LocationAwareLogger) proxy).log(null, FQCN, level, message, assemblyArgs(args), throwable)
     }
 
-    private void proxyLog(Throwable throwable, Supplier<Map> args, final int level) {
-        ((LocationAwareLogger) proxy).log(null, FQCN, level, null, assemblyArgs(args), throwable)
+    private void proxyLog(Throwable throwable, Supplier args, final int level) {
+        def params = args?.get()
+        if (params instanceof String || params instanceof GString) {
+            ((LocationAwareLogger) proxy).log(null, FQCN, level, String.valueOf(params), assemblyArgs(null), throwable)
+        } else if (params instanceof Map) {
+            ((LocationAwareLogger) proxy).log(null, FQCN, level, null, assemblyArgs(args), throwable)
+        }
+
     }
 
     private void proxyLog(final Supplier args, final int level) {

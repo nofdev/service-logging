@@ -8,10 +8,10 @@
                 <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
                 <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
                 <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
-                    <!--<prettyPrint>true</prettyPrint>-->
+                    <prettyPrint>true</prettyPrint>
                 </jsonFormatter>
                 <logPrefix>~~~json~~~</logPrefix>
-                <!--<logPrefixSwitch>false</logPrefixSwitch>-->
+                <logPrefixSwitch>false</logPrefixSwitch>
             </layout>
         </encoder>
     </appender>

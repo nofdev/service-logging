@@ -12,8 +12,13 @@
             <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
             <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
             <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
+                <!--是否需要对json格式打印-->
+                <prettyPrint>true</prettyPrint>
             </jsonFormatter>
+            <!--日志的前缀-->
             <logPrefix>~~~json~~~</logPrefix>
+            <!--是否打开显示前缀的功能-->
+            <logPrefixSwitch>false</logPrefixSwitch>
         </layout>
     </encoder>
 </appender>
