@@ -137,6 +137,11 @@ publishing {
                             name 'Quincy Meng'
                             email 'mengqiang81@gmail.com'
                         }
+                        developer {
+                            id 'tfgzs'
+                            name 'Tengfei liu'
+                            email '867805932@qq.com'
+                        }
                     }
                 }
             }
