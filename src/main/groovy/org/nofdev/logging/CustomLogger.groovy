@@ -1,12 +1,10 @@
 package org.nofdev.logging
 
 import groovy.transform.CompileStatic
-import org.nofdev.servicefacade.ServiceContextHolder
 import org.slf4j.LoggerFactory
 import org.slf4j.spi.LocationAwareLogger
 
 import java.util.function.Supplier
-
 /**
  * Created by Liutengfei on 2016/8/11 0011.
  */
@@ -430,8 +428,8 @@ public final class CustomLogger {
         if (!map) {
             map = new HashMap()
         }
-        map.put(ServiceContextHolder.serviceContext.CALLID, ServiceContextHolder.serviceContext.getCallId())
-        Object[] objects = [map]
+//        map.put(ServiceContextHolder.serviceContext.CALLID, ServiceContextHolder.serviceContext.getCallId())
+        Object[] objects = [map.collectEntries {[("msg_${it?.key}"):(it.value)]}]
         return objects
     }
 

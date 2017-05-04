@@ -16,11 +16,9 @@
         </encoder>
     </appender>
 
-
     <root level="DEBUG">
         <appender-ref ref="CONSOLE"/>
     </root>
-
 
     <logger name="org.apache" level="INFO"/>
     <logger name="org.springframework" level="INFO"/>
