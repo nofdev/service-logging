@@ -27,11 +27,11 @@
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
     <contextName>ProjectName</contextName>
 
+     <!--development,develop 环境会激活这里的配置-->
     <springProfile name="development,develop">
         <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
@@ -41,7 +41,7 @@
                     <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
                     <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
                         <!--是否需要对json格式打印-->
-                        <prettyPrint>true</prettyPrint>
+                        <prettyPrint>false</prettyPrint>
                     </jsonFormatter>
                     <!--日志的前缀-->
                     <logPrefix>~~~json~~~</logPrefix>
@@ -61,6 +61,7 @@
         <logger name="org.hibernate.type" level="TRACE"/>
     </springProfile>
 
+    <!--production,pre,testing,test 环境会激活这里的配置-->
     <springProfile name="production,pre,testing,test">
         <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
             <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
@@ -69,7 +70,7 @@
                     <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
                     <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
                     <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
-                        <prettyPrint>false</prettyPrint>
+                        <prettyPrint>true</prettyPrint>
                     </jsonFormatter>
                     <logPrefix>~~~json~~~</logPrefix>
                     <logPrefixSwitch>false</logPrefixSwitch>
