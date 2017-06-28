@@ -1,8 +1,6 @@
 # service-logging
 
-## 使用说明
-
-### logback.xml 中需要如下配置
+### 单独使用请在 logback.xml 中加入如下配置
 
 ```xml
 <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
@@ -24,7 +22,7 @@
 </appender>
 ```
 
-### 与SpringBoot整合 logback-spring.xml 完整案例
+### 与SpringBoot整合 logback-spring.xml 完整示例
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -71,12 +69,9 @@
                     <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
                     <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
                     <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
-                        <!--是否需要对json格式打印-->
                         <prettyPrint>false</prettyPrint>
                     </jsonFormatter>
-                    <!--日志的前缀-->
                     <logPrefix>~~~json~~~</logPrefix>
-                    <!--是否打开显示前缀的功能-->
                     <logPrefixSwitch>false</logPrefixSwitch>
                 </layout>
             </encoder>

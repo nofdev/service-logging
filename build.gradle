@@ -165,25 +165,6 @@ publishing {
                 }
             }
         }
-
-//        gpgJars(MavenPublication) {
-//            getSignatureFiles().each { signature ->
-//                artifact(signature.archive) {
-//                    classifier = signature.classifier
-//                    extension = signature.extension
-//                }
-//            }
-//        }
-//
-//        if (project.ext.pomFile.exists()) {
-//            gpgPom(MavenPublication) {
-//                artifact(getPomSignature()) {
-//                    classifier = null
-//                    extension = 'pom.asc'
-//                }
-//            }
-//        }
-
     }
     repositories {
         if (project.ext.pomFile.exists() && isMvnCentral == "true") {

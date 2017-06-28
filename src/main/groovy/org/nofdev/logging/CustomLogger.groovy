@@ -428,7 +428,6 @@ public final class CustomLogger {
         if (!map) {
             map = new HashMap()
         }
-//        map.put(ServiceContextHolder.serviceContext.CALLID, ServiceContextHolder.serviceContext.getCallId())
         Object[] objects = [map.collectEntries {[("msg_${it?.key}"):(it.value)]}]
         return objects
     }

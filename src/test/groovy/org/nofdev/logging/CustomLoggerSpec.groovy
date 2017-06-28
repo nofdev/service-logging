@@ -22,7 +22,6 @@ public class CustomLoggerSpec extends Specification {
     @Ignore
     def demo() {
         setup:
-        ServiceContextHolder.serviceContext.setCallId(new CallId(id: "111", parent: "000", root: "000"))
 
         Exception e = new RuntimeException("发生异常了")
         log.debug("错误概述")
@@ -33,8 +32,8 @@ public class CustomLoggerSpec extends Specification {
         log.debug(e) { "错误概述222222" }
 
         //下面这两个效果是一样的,闭包传入字符串默认覆盖掉message
-        log.debug("错误概述") { [message: "我会覆盖前面的错误概述"] }
-        log.debug("错误概述") { def a = "我会覆盖前面的错误概述"; ["message": "测试GString的序列化,${a}"] }
+        log.debug("错误概述") { [message: "错误概述666666"] }
+        log.debug("错误概述") { def a = "错误概述666666"; ["message": "测试GString的序列化,${a}"] }
 
         //闭包里面的只会在日志级别正确的时候执行
         log.debug() { "我是错误描述，但是如果不是debug级别我里面的函数是不会执行的${debugStr()}" }
