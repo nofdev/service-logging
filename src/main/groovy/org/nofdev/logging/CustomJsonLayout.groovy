@@ -7,14 +7,10 @@ import ch.qos.logback.contrib.json.classic.JsonLayout
  * Created by Liutengfei on 2016/8/11 0011.
  */
 public class CustomJsonLayout extends JsonLayout {
-    protected String logPrefix
-    protected boolean logPrefixSwitch;
+    protected LogPrefix logPrefix
 
     CustomJsonLayout() {
         super();
-        logPrefix = ""
-        logPrefixSwitch = true
-        this.getJsonFormatter()
     }
 
     /**
@@ -31,26 +27,53 @@ public class CustomJsonLayout extends JsonLayout {
 
     @Override
     String doLayout(ILoggingEvent event) {
-        if (logPrefixSwitch) {
-            return "${logPrefix}${super.doLayout(event)}"
+        if (logPrefix.prefixSwitch) {
+            return "${logPrefix.prefixText}${super.doLayout(event)}"
         } else {
             return super.doLayout(event)
         }
     }
 
-    String getLogPrefix() {
+    LogPrefix getLogPrefix() {
         return logPrefix
     }
 
-    void setLogPrefix(String logPrefix) {
+    void setLogPrefix(LogPrefix logPrefix) {
         this.logPrefix = logPrefix
     }
 
-    boolean getLogPrefixSwitch() {
-        return logPrefixSwitch
+    static class LogPrefix {
+        /**
+         * 是否要显示前缀
+         */
+        protected boolean prefixSwitch;
+        /**
+         * 要显示的前缀字符串
+         */
+        protected String prefixText
+
+        LogPrefix() {
+            prefixText = ""
+            prefixSwitch = true
+        }
+
+        boolean getPrefixSwitch() {
+            return prefixSwitch
+        }
+
+        void setPrefixSwitch(boolean prefixSwitch) {
+            this.prefixSwitch = prefixSwitch
+        }
+
+        String getPrefixText() {
+            return prefixText
+        }
+
+        void setPrefixText(String prefixText) {
+            this.prefixText = prefixText
+        }
     }
 
-    void setLogPrefixSwitch(boolean logPrefixSwitch) {
-        this.logPrefixSwitch = logPrefixSwitch
-    }
 }
+
+
