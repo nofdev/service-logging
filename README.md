@@ -30,6 +30,7 @@
         <appender-ref ref="CONSOLE"/>
     </root>
 
+    <logger name="org.nofdev" level="INFO"/>
     <logger name="org.apache" level="INFO"/>
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.eclipse.jetty" level="INFO"/>
@@ -103,6 +104,7 @@
     </springProfile>
 
 
+    <logger name="org.nofdev" level="INFO"/>
     <logger name="org.apache" level="INFO"/>
     <logger name="org.springframework" level="INFO"/>
     <logger name="org.eclipse.jetty" level="INFO"/>
