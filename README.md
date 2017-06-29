@@ -119,7 +119,15 @@ private static final CustomLogger logger = CustomLogger.getLogger(HelloFacadeImp
 logger.debug("错误概述", e) { ["custDate": "自定义键值对", "func": debugStr()] }
 ```
 
+
 更多用法参考测试代码 `CustomLoggerSpec`
+
+## 后置日志输出处理器
+
+通过实现 LogPostProcessor 接口，
+可以改变日志的输出结果，去掉一些key，或者添加一些key,
+比如所有的日志都需要调用链Id打印出来，在众多开发人员无感知的情况下，把CallID统一插入到日志里面
+你可以对里面的键值对做任何增删改操作，但是注意不要执行太消耗时间的功能，否则会影响日志效率
 
 ## Workaround
 

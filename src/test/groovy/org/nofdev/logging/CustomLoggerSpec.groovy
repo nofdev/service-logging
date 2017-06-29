@@ -1,10 +1,10 @@
 package org.nofdev.logging
 
 import groovy.transform.CompileStatic
-import org.nofdev.servicefacade.CallId
-import org.nofdev.servicefacade.ServiceContextHolder
-import spock.lang.Ignore
+import org.junit.Ignore
 import spock.lang.Specification
+
+import java.util.concurrent.CompletableFuture
 
 /**
  * Created by Liutengfei on 2016/8/9 0009.
@@ -18,6 +18,20 @@ public class CustomLoggerSpec extends Specification {
     def setup() {}
 
     def cleanup() {}
+
+
+    @Ignore
+    def postProcessor() {
+        setup:
+        log.debug("我是tom"){[age:18,address:"北京",abc:"111111"]}
+        log.debug("我是tom的弟弟"){[age:17,address:"北京"]}
+        CompletableFuture.runAsync({
+            log.debug("我是jerry"){[age:16,address:"杭州"]}
+        })
+        new Thread({
+            log.debug("我是bill"){[age:14,address:"上海"]}
+        }).start()
+    }
 
     @Ignore
     def demo() {
@@ -40,6 +54,8 @@ public class CustomLoggerSpec extends Specification {
             [aa: a]
         }
 
+
+
     }
 
     public static String infoStr() {
@@ -50,5 +66,4 @@ public class CustomLoggerSpec extends Specification {
         println "debugStr Method执行了"
         return "---------------debugStr------------"
     }
-
 }

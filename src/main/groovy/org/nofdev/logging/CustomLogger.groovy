@@ -406,23 +406,6 @@ public final class CustomLogger {
         }
     }
 
-    public boolean isLoggable(final Level level) {
-        switch (level) {
-            case Level.TRACE:
-                return isTraceEnabled();
-            case Level.DEBUG:
-                return isDebugEnabled();
-            case Level.INFO:
-                return isInfoEnabled();
-            case Level.WARN:
-                return isWarnEnabled();
-            case Level.ERROR:
-                return isErrorEnabled();
-            default:
-                throw new IllegalStateException("Logging level [" + level + "] is invalid");
-        }
-    }
-
     private Object[] assemblyArgs(final Supplier<Map> args) {
         Map map = args?.get()
         if (!map) {

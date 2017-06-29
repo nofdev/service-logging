@@ -7,6 +7,7 @@ import ch.qos.logback.contrib.json.classic.JsonLayout
  * Created by Liutengfei on 2016/8/11 0011.
  */
 public class CustomJsonLayout extends JsonLayout {
+    protected LogPostProcessor logPostProcessor
     protected LogPrefix logPrefix
 
     CustomJsonLayout() {
@@ -20,18 +21,30 @@ public class CustomJsonLayout extends JsonLayout {
      */
     @Override
     protected void addCustomDataToJsonMap(Map<String, Object> map, ILoggingEvent event) {
-        if (event.getArgumentArray() && event.getArgumentArray()[0] instanceof Map) {
-            map.putAll(event.getArgumentArray()[0])
+        if (event.getArgumentArray()) {
+            def customKV = event.getArgumentArray()[0]
+            if (customKV instanceof Map) {
+                logPostProcessor?.invoke(map, customKV)
+                map.putAll(customKV)
+            }
         }
     }
 
     @Override
     String doLayout(ILoggingEvent event) {
-        if (logPrefix.prefixSwitch) {
+        if (logPrefix?.prefixSwitch) {
             return "${logPrefix.prefixText}${super.doLayout(event)}"
         } else {
             return super.doLayout(event)
         }
+    }
+
+    LogPostProcessor getLogPostProcessor() {
+        return logPostProcessor
+    }
+
+    void setLogPostProcessor(LogPostProcessor logPostProcessor) {
+        this.logPostProcessor = logPostProcessor
     }
 
     LogPrefix getLogPrefix() {
@@ -54,7 +67,7 @@ public class CustomJsonLayout extends JsonLayout {
 
         LogPrefix() {
             prefixText = ""
-            prefixSwitch = true
+            prefixSwitch = false
         }
 
         boolean getPrefixSwitch() {

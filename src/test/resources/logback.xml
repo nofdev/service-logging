@@ -5,7 +5,7 @@
     <!--是否需要对json格式日志美化-->
     <property name="JsonPretty" value="true" />
     <!--是否打开显示前缀的功能-->
-    <property name="PrefixSwitch" value="true" />
+    <property name="PrefixSwitch" value="false" />
     <!--要显示的前缀字符串-->
     <property name="PrefixText" value="~~~json~~~" />
 
@@ -24,6 +24,7 @@
                     <prefixSwitch>${PrefixSwitch}</prefixSwitch>
                     <prefixText>${PrefixText}</prefixText>
                 </logPrefix>
+                <!--<logPostProcessor class="org.nofdev.logging.CustomPostProcessor"/>-->
             </layout>
         </encoder>
     </appender>
