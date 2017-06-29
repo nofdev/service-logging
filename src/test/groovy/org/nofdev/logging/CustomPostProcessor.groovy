@@ -1,8 +1,8 @@
 package org.nofdev.logging
 
 import groovy.json.JsonOutput
-import org.nofdev.servicefacade.context.CallId
-import org.nofdev.servicefacade.context.ServiceContextHolder
+import org.nofdev.servicefacade.CallId
+import org.nofdev.servicefacade.ServiceContextHolder
 
 /**
  *  这是一个示例，
