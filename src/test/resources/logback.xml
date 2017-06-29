@@ -24,7 +24,8 @@
                     <prefixSwitch>${PrefixSwitch}</prefixSwitch>
                     <prefixText>${PrefixText}</prefixText>
                 </logPrefix>
-                <!--<logPostProcessor class="org.nofdev.logging.CustomPostProcessor"/>-->
+                <!--对日志的某些键值对统一处理，具体使用方法见单元测试-->
+                <logPostProcessor class="org.nofdev.logging.CustomPostProcessor"/>
             </layout>
         </encoder>
     </appender>

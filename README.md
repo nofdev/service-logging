@@ -5,8 +5,16 @@
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+    <!--项目名称-->
+    <property name="ProjectName" value="MyLog" />
+    <!--是否需要对json格式日志美化-->
+    <property name="JsonPretty" value="true" />
+    <!--是否打开显示前缀的功能-->
+    <property name="PrefixSwitch" value="false" />
+    <!--要显示的前缀字符串-->
+    <property name="PrefixText" value="~~~json~~~" />
 
-    <contextName>ProjectName</contextName>
+    <contextName>${ProjectName}</contextName>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
@@ -15,13 +23,14 @@
                 <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
                 <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
                 <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
-                    <!--是否需要对json格式打印-->
-                    <prettyPrint>true</prettyPrint>
+                    <prettyPrint>${JsonPretty}</prettyPrint>
                 </jsonFormatter>
-                <!--日志的前缀-->
-                <logPrefix>~~~json~~~</logPrefix>
-                <!--是否打开显示前缀的功能-->
-                <logPrefixSwitch>false</logPrefixSwitch>
+                <logPrefix>
+                    <prefixSwitch>${PrefixSwitch}</prefixSwitch>
+                    <prefixText>${PrefixText}</prefixText>
+                </logPrefix>
+                <!--对日志的某些键值对统一处理，具体使用方法见单元测试，如果你不需要可以注释掉这段代码-->
+                <logPostProcessor class="org.nofdev.logging.CustomPostProcessor"/>
             </layout>
         </encoder>
     </appender>
@@ -38,6 +47,7 @@
     <logger name="org.hibernate" level="INFO"/>
 </configuration>
 
+
 ```
 
 ### 与SpringBoot整合 logback-spring.xml 完整示例
@@ -47,7 +57,16 @@
 <configuration>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
 
-    <contextName>ProjectName</contextName>
+    <!--项目名称-->
+    <property name="ProjectName" value="MyLog" />
+    <!--是否需要对json格式日志美化-->
+    <property name="JsonPretty" value="true" />
+    <!--是否打开显示前缀的功能-->
+    <property name="PrefixSwitch" value="false" />
+    <!--要显示的前缀字符串-->
+    <property name="PrefixText" value="~~~json~~~" />
+
+    <contextName>${ProjectName}</contextName>
 
      <!--development,develop 环境会激活这里的配置-->
     <springProfile name="development,develop">
@@ -58,13 +77,14 @@
                     <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
                     <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
                     <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
-                        <!--是否需要对json格式打印-->
-                        <prettyPrint>false</prettyPrint>
+                        <prettyPrint>${JsonPretty}</prettyPrint>
                     </jsonFormatter>
-                    <!--日志的前缀-->
-                    <logPrefix>~~~json~~~</logPrefix>
-                    <!--是否打开显示前缀的功能-->
-                    <logPrefixSwitch>false</logPrefixSwitch>
+                    <logPrefix>
+                        <prefixSwitch>${PrefixSwitch}</prefixSwitch>
+                        <prefixText>${PrefixText}</prefixText>
+                    </logPrefix>
+                    <!--对日志的某些键值对统一处理，具体使用方法见单元测试，如果你不需要可以注释掉这段代码-->
+                    <logPostProcessor class="com.company.logging.CustomPostProcessor"/>
                 </layout>
             </encoder>
         </appender>
@@ -88,10 +108,14 @@
                     <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
                     <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
                     <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
-                        <prettyPrint>true</prettyPrint>
+                        <prettyPrint>${JsonPretty}</prettyPrint>
                     </jsonFormatter>
-                    <logPrefix>~~~json~~~</logPrefix>
-                    <logPrefixSwitch>false</logPrefixSwitch>
+                    <logPrefix>
+                        <prefixSwitch>${PrefixSwitch}</prefixSwitch>
+                        <prefixText>${PrefixText}</prefixText>
+                    </logPrefix>
+                    <!--对日志的某些键值对统一处理，具体使用方法见单元测试，如果你不需要可以注释掉这段代码-->
+                    <logPostProcessor class="com.company.logging.CustomPostProcessor"/>
                 </layout>
             </encoder>
         </appender>
