@@ -1,25 +1,42 @@
 # service-logging
 
-### 单独使用请在 logback.xml 中加入如下配置
+### 简单使用 logback.xml 配置示例
 
 ```xml
-<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
-        <layout class="org.nofdev.logging.CustomJsonLayout">
-            <appendLineSeparator>true</appendLineSeparator>
-            <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
-            <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
-            <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
-                <!--是否需要对json格式打印-->
-                <prettyPrint>true</prettyPrint>
-            </jsonFormatter>
-            <!--日志的前缀-->
-            <logPrefix>~~~json~~~</logPrefix>
-            <!--是否打开显示前缀的功能-->
-            <logPrefixSwitch>false</logPrefixSwitch>
-        </layout>
-    </encoder>
-</appender>
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <contextName>ProjectName</contextName>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="org.nofdev.logging.CustomJsonLayout">
+                <appendLineSeparator>true</appendLineSeparator>
+                <timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</timestampFormat>
+                <timestampFormatTimezoneId>UTC</timestampFormatTimezoneId>
+                <jsonFormatter class="org.nofdev.logging.CustomJacksonJsonFormatter">
+                    <!--是否需要对json格式打印-->
+                    <prettyPrint>true</prettyPrint>
+                </jsonFormatter>
+                <!--日志的前缀-->
+                <logPrefix>~~~json~~~</logPrefix>
+                <!--是否打开显示前缀的功能-->
+                <logPrefixSwitch>false</logPrefixSwitch>
+            </layout>
+        </encoder>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+    <logger name="org.apache" level="INFO"/>
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.eclipse.jetty" level="INFO"/>
+    <logger name="jndi" level="INFO"/>
+    <logger name="org.hibernate" level="INFO"/>
+</configuration>
+
 ```
 
 ### 与SpringBoot整合 logback-spring.xml 完整示例
