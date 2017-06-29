@@ -79,8 +79,8 @@ public final class CustomLogger {
         }
     }
     /**
-     * 当传入map的时候，map的key不要定义为 timestamp 、level 、thread 、logger 、context 因为这样会覆盖掉内置关键字。<br>
-     * 当传入String类型的时候，会覆盖messsage
+     * 当传入map的时候，生成的key为 msg_xxx <br>
+     * 当传入String类型的时候，会覆盖 messsage
      * @param args 目前仅支持Map和String类型
      */
     public void error(final Supplier args) {
@@ -93,8 +93,8 @@ public final class CustomLogger {
         }
     }
     /**
-     * 当传入map的时候，map的key不要定义为 timestamp 、level 、thread 、logger 、context 因为这样会覆盖掉内置关键字。<br>
-     * 当传入String类型的时候，会覆盖messsage
+     * 当传入map的时候，生成的key为 msg_xxx <br>
+     * 当传入String类型的时候，会覆盖 messsage
      * @param args 目前仅支持Map和String类型
      */
     public void error(final Throwable throwable, final Supplier args) {
@@ -148,8 +148,8 @@ public final class CustomLogger {
         }
     }
     /**
-     * 当传入map的时候，map的key不要定义为 timestamp 、level 、thread 、logger 、context 因为这样会覆盖掉内置关键字。<br>
-     * 当传入String类型的时候，会覆盖messsage
+     * 当传入map的时候，生成的key为 msg_xxx <br>
+     * 当传入String类型的时候，会覆盖 messsage
      * @param args 目前仅支持Map和String类型
      */
     public void warn(final Supplier args) {
@@ -212,8 +212,8 @@ public final class CustomLogger {
         }
     }
     /**
-     * 当传入map的时候，map的key不要定义为 timestamp 、level 、thread 、logger 、context 因为这样会覆盖掉内置关键字。<br>
-     * 当传入String类型的时候，会覆盖messsage
+     * 当传入map的时候，生成的key为 msg_xxx <br>
+     * 当传入String类型的时候，会覆盖 messsage
      * @param args 目前仅支持Map和String类型
      */
     public void info(final Supplier args) {
@@ -276,8 +276,8 @@ public final class CustomLogger {
         }
     }
     /**
-     * 当传入map的时候，map的key不要定义为 timestamp 、level 、thread 、logger 、context 因为这样会覆盖掉内置关键字。<br>
-     * 当传入String类型的时候，会覆盖messsage
+     * 当传入map的时候，生成的key为 msg_xxx <br>
+     * 当传入String类型的时候，会覆盖 messsage
      * @param args 目前仅支持Map和String类型
      */
     public void debug(final Supplier args) {
