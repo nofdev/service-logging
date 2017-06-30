@@ -16,7 +16,7 @@ class CustomPostProcessor implements LogPostProcessor{
         if("我是tom"==slf4jMap.get("message")){
             customMap.remove("abc") //移除message
         }
-        CallId callId=ServiceContextHolder.serviceContext.generatCallIdIfAbsente()
+        CallId callId=ServiceContextHolder.serviceContext.generateCallIdIfAbsent()
         customMap.put("callId",JsonOutput.toJson(callId))//插入一个新的自定义key
     }
 }

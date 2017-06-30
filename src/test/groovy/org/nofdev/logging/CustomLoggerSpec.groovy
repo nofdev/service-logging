@@ -20,7 +20,7 @@ public class CustomLoggerSpec extends Specification {
     def cleanup() {}
 
 
-//    @Ignore
+    @Ignore
     def postProcessor() {
         setup:
         log.debug("我是tom"){[age:18,address:"北京",abc:"111111"]}
