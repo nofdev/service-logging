@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture
  */
 @CompileStatic
 public class CustomLoggerSpec extends Specification {
-    private static final CustomLogger log = CustomLogger.getLogger(CustomLoggerSpec.class);
+    private final CustomLogger log = CustomLogger.getLogger(CustomLoggerSpec.class);
 
     def setupSpec() {}
 

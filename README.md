@@ -138,7 +138,7 @@
 ```
 
 ```java
-private static final CustomLogger logger = CustomLogger.getLogger(HelloFacadeImpl.class);
+private final CustomLogger logger = CustomLogger.getLogger(HelloFacadeImpl.class);
 
 logger.debug("错误概述", e) { ["custDate": "自定义键值对", "func": debugStr()] }
 ```
