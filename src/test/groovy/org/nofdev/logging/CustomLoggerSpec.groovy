@@ -1,6 +1,7 @@
 package org.nofdev.logging
 
 import groovy.transform.CompileStatic
+import groovy.util.logging.Slf4j
 import org.junit.Ignore
 import spock.lang.Specification
 
@@ -9,6 +10,7 @@ import java.util.concurrent.CompletableFuture
 /**
  * Created by Liutengfei on 2016/8/9 0009.
  */
+@Slf4j
 @CompileStatic
 public class CustomLoggerSpec extends Specification {
     private final CustomLogger log = CustomLogger.getLogger(CustomLoggerSpec.class);
@@ -20,7 +22,7 @@ public class CustomLoggerSpec extends Specification {
     def cleanup() {}
 
 
-    @Ignore
+//    @Ignore
     def postProcessor() {
         setup:
         log.debug("我是tom"){[age:18,address:"北京",abc:"111111"]}
