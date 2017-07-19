@@ -1,12 +1,12 @@
 package org.nofdev.logging
 
-import groovy.util.logging.Slf4j
+import groovy.transform.ToString
 import org.junit.Test
 
 /**
  * Created by Liutengfei on 2017/7/19 0019.
  */
-@Slf4j
+@Logging
 class LoggingTest {
     @Test
     public void slf4j(){

@@ -10,7 +10,6 @@ import java.util.concurrent.CompletableFuture
 /**
  * Created by Liutengfei on 2016/8/9 0009.
  */
-@Slf4j
 @CompileStatic
 public class CustomLoggerSpec extends Specification {
     private final CustomLogger log = CustomLogger.getLogger(CustomLoggerSpec.class);

@@ -66,16 +66,16 @@ public @interface Logging {
     Class<? extends LogASTTransformation.LoggingStrategy> loggingStrategy() default Slf4jLoggingStrategy.class;
 
     public static class Slf4jLoggingStrategy extends LogASTTransformation.AbstractLoggingStrategy {
-        private static final String LOGGER_NAME = "org.slf4j.Logger";
-        private static final String FACTORY_NAME = "org.slf4j.LoggerFactory";
+        private static final String LOGGER_NAME = "org.nofdev.logging.CustomLogger";
+        private static final String FACTORY_NAME = "org.nofdev.logging.CustomLogger";
 
         protected Slf4jLoggingStrategy(final GroovyClassLoader loader) {
             super(loader);
         }
 
         public FieldNode addLoggerFieldToClass(ClassNode classNode, String logFieldName, String categoryName) {
-            return classNode.addField(logFieldName,
-                    Opcodes.ACC_FINAL | Opcodes.ACC_TRANSIENT | Opcodes.ACC_STATIC | Opcodes.ACC_PRIVATE,
+            return classNode.addField(
+                    logFieldName, Opcodes.ACC_FINAL | Opcodes.ACC_TRANSIENT | Opcodes.ACC_STATIC | Opcodes.ACC_PRIVATE,
                     classNode(LOGGER_NAME),
                     new MethodCallExpression(
                             new ClassExpression(classNode(FACTORY_NAME)),
