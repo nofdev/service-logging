@@ -2,6 +2,7 @@ package org.nofdev.logging
 
 import groovy.transform.CompilationUnitAware
 import groovy.transform.CompileStatic
+import groovyjarjarasm.asm.Opcodes
 import org.codehaus.groovy.GroovyBugError
 import org.codehaus.groovy.ast.*
 import org.codehaus.groovy.ast.expr.ClassExpression
@@ -14,7 +15,6 @@ import org.codehaus.groovy.control.CompilePhase
 import org.codehaus.groovy.control.SourceUnit
 import org.codehaus.groovy.transform.AbstractASTTransformation
 import org.codehaus.groovy.transform.GroovyASTTransformation
-import org.objectweb.asm.Opcodes
 
 import java.lang.reflect.Modifier
 

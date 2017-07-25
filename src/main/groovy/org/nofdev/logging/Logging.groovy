@@ -1,20 +1,11 @@
-package org.nofdev.logging;
+package org.nofdev.logging
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-import java.util.Locale;
+import org.codehaus.groovy.transform.GroovyASTTransformationClass
 
-import groovy.lang.GroovyClassLoader;
-import groovy.transform.ASTTest;
-import org.codehaus.groovy.ast.ClassNode;
-import org.codehaus.groovy.ast.FieldNode;
-import org.codehaus.groovy.ast.expr.*;
-import org.codehaus.groovy.control.CompilePhase;
-import org.codehaus.groovy.transform.GroovyASTTransformationClass;
-import org.codehaus.groovy.transform.LogASTTransformation;
-import org.objectweb.asm.Opcodes;
+import java.lang.annotation.ElementType
+import java.lang.annotation.Retention
+import java.lang.annotation.RetentionPolicy
+import java.lang.annotation.Target
 
 @java.lang.annotation.Documented
 @Target([ElementType.TYPE])
