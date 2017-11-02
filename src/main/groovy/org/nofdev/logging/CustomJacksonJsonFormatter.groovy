@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.module.SimpleModule
 class CustomJacksonJsonFormatter extends JacksonJsonFormatter {
     CustomJacksonJsonFormatter() {
         super()
-        SimpleModule module = new SimpleModule();
-        module.addSerializer(GString.class, new GStringSerializer());
+        SimpleModule module = new SimpleModule()
+        module.addSerializer(GString.class, new GStringSerializer())
         getObjectMapper().registerModule(module)
     }
 

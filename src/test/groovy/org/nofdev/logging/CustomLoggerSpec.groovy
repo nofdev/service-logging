@@ -1,7 +1,6 @@
 package org.nofdev.logging
 
 import groovy.transform.CompileStatic
-import groovy.util.logging.Slf4j
 import org.junit.Ignore
 import spock.lang.Specification
 
@@ -12,7 +11,7 @@ import java.util.concurrent.CompletableFuture
  */
 @CompileStatic
 public class CustomLoggerSpec extends Specification {
-    private final CustomLogger log = CustomLogger.getLogger(CustomLoggerSpec.class);
+    private static final CustomLogger log = CustomLogger.getLogger(CustomLoggerSpec.class);
 
     def setupSpec() {}
 
@@ -20,17 +19,16 @@ public class CustomLoggerSpec extends Specification {
 
     def cleanup() {}
 
-
 //    @Ignore
     def postProcessor() {
         setup:
-        log.debug("我是tom"){[age:18,address:"北京",abc:"111111"]}
-        log.debug("我是tom的弟弟"){[age:17,address:"北京"]}
+        log.debug("我是tom") { [age: 18, address: "北京", abc: "111111"] }
+        log.debug("我是tom的弟弟") { [age: 17, address: "北京"] }
         CompletableFuture.runAsync({
-            log.debug("我是jerry"){[age:16,address:"杭州"]}
+            log.debug("我是jerry") { [age: 16, address: "杭州"] }
         })
         new Thread({
-            log.debug("我是bill"){[age:14,address:"上海"]}
+            log.debug("我是bill") { [age: 14, address: "上海"] }
         }).start()
     }
 
@@ -54,7 +52,6 @@ public class CustomLoggerSpec extends Specification {
             def a = [bb: 2, cc: 3]
             [aa: a]
         }
-
 
 
     }
