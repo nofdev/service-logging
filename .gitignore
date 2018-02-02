@@ -126,3 +126,8 @@ Icon
 
 *.log
 tmp/
+
+
+## hack for graddle wrapper
+!wrapper/*.jar
+!**/wrapper/*.jar
